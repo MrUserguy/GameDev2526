@@ -31,7 +31,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded==true)  
+        if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.UpArrow) ||Input.GetKeyDown(KeyCode.W) && isGrounded==true)  
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingForce);
         }
