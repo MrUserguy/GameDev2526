@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-
+    //adding a comment to fix stuff
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //attributes
     public float movementSpeed = 5f;
