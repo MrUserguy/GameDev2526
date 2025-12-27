@@ -1,17 +1,21 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     //adding a comment to fix stuff
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //attributes
+
+    public int health = 100;
     public float movementSpeed = 5f;
     public float jumpingForce = 10f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
-
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private bool isGrounded;
 
@@ -20,6 +24,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -43,4 +48,33 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Damage")
+        {
+            health -= 50; // loses 50 health each time we collide with the damage tilemap layer
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingForce);
+
+            StartCoroutine(BlinkRed());
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private IEnumerator BlinkRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
+    }
+
+    private void Die()
+    {
+        //Unity.SceneManagement.SceneManager.LoadScene("GameScene*");
+        SceneManager.LoadScene("GameScene");
+    }
 }
