@@ -18,6 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool hasDoubleJump;
 
 
     void Start()
@@ -36,9 +37,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.UpArrow) ||Input.GetKeyDown(KeyCode.W) && isGrounded==true)  
+        if ((Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.UpArrow) ||Input.GetKeyDown(KeyCode.W)) && (isGrounded || hasDoubleJump))  
         {
+            if (!isGrounded)
+            {
+                hasDoubleJump = false;  
+            }
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingForce);
+
+        }
+
+        if (isGrounded)
+        {
+            hasDoubleJump = true;
         }
 
     }
