@@ -20,12 +20,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private bool isGrounded;
     private bool hasDoubleJump;
 
+    //idk man
+    //public PhysicsMaterial2D normalFriction;
+    //xpublic PhysicsMaterial2D zeroFriction;
+    BoxCollider2D col;
+
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        col = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -44,12 +52,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 hasDoubleJump = false;  
             }
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingForce);
-
         }
 
         if (isGrounded)
         {
             hasDoubleJump = true;
+            col.sharedMaterial.friction = 1.0f;
+        }
+        else
+        {
+            col.sharedMaterial.friction = 0.0f;
         }
 
     }
