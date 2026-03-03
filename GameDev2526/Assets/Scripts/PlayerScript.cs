@@ -64,6 +64,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             col.sharedMaterial.friction = 0.0f;
         }
 
+        if (transform.position.y < -10f)    
+        {
+            Die(); 
+
+        }
     }
     private void FixedUpdate()
     {
