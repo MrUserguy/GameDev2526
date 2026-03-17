@@ -102,7 +102,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Die()
     {
-        //Unity.SceneManagement.SceneManager.LoadScene("GameScene*");
-        SceneManager.LoadScene("GameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        
     }
 }
