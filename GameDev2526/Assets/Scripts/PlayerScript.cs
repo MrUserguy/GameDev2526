@@ -13,7 +13,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float jumpingForce = 10f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
+    public float dieHeight = -10f;
     public LayerMask groundLayer;
+
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -64,7 +66,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             col.sharedMaterial.friction = 0.0f;
         }
 
-        if (transform.position.y < -10f)    
+        if (transform.position.y < dieHeight)    
         {
             Die(); 
 
