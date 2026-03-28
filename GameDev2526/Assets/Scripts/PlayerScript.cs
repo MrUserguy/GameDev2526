@@ -8,7 +8,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //attributes
 
-    public int health = 100;
+    
+    private Vector2 initialPlayerLocation = new Vector2(0,0);
+    [Header("Player Stats")]
+    [SerializeField] private int health = 100;
     public float movementSpeed = 5f;
     public float jumpingForce = 10f;
     public Transform groundCheck;
@@ -19,7 +22,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool hasDoubleJump;
-
+    [Header("Platform Settings(can move to game manager later)")]
+    [SerializeField] private int cooldownTime = 3;
+    [SerializeField] private float spawnTime = 10f; 
+    [SerializeField] private GameObject platformPrefab;
+    private float nextSpawnTime=0;
     //idk man
     //public PhysicsMaterial2D normalFriction;
     //xpublic PhysicsMaterial2D zeroFriction;
@@ -42,7 +49,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         //when we press A or D this value will +1 or -1,
         //if we press nothing the value is 0
-
+        if (Input.GetKeyDown(KeyCode.F)&&Time.time>nextSpawnTime)
+        {
+            createPlatform();
+            transform.position = initialPlayerLocation;
+            nextSpawnTime = Time.time+cooldownTime+spawnTime;
+        }
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);
 
         if ((Input.GetKeyDown(KeyCode.Space)||Input.GetKeyDown(KeyCode.UpArrow) ||Input.GetKeyDown(KeyCode.W)) && (isGrounded || hasDoubleJump))  
@@ -104,5 +116,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         
+    }
+    private void createPlatform()
+    {
+        Vector2 spawnLocation = (Vector2)transform.position + new Vector2(0, -0.5f);
+        GameObject tempPlatform = Instantiate(platformPrefab, spawnLocation, Quaternion.identity);
+        Destroy(tempPlatform, spawnTime);
     }
 }
