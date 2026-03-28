@@ -55,6 +55,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             createPlatform();
             transform.position = initialPlayerLocation;
+            health = 100;
             nextSpawnTime = Time.time+cooldownTime+spawnTime;
         }
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);

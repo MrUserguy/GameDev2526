@@ -4607,6 +4607,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  cooldownTime: 3
+  spawnTime: 10
+  platformPrefab: {fileID: 356277019602569509, guid: 7b07d4ab87823e646a5084a5a5702e14, type: 3}
 --- !u!1 &891341933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1563514208492538, guid: 64d6bba3e8fd85c4ab17f54507fd0a40, type: 3}
