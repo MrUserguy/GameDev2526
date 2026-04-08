@@ -1789,9 +1789,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  cooldownTime: 3
-  spawnTime: 10
-  platformPrefab: {fileID: 356277019602569509, guid: 7b07d4ab87823e646a5084a5a5702e14, type: 3}
 --- !u!1 &907713602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,7 +2927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2537bebe409cbc1478076899f690a5f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Level7
+  nextLevelName: Level6
 --- !u!114 &2091828525
 MonoBehaviour:
   m_ObjectHideFlags: 0
