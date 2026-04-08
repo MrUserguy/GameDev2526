@@ -25,8 +25,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private bool isGrounded;
     private bool hasDoubleJump;
     [Header("Platform Settings(can move to game manager later)")]
+    [SerializeField] private int usagetime = 3;
     [SerializeField] private int cooldownTime = 3;
-    [SerializeField] private float spawnTime = 10f; 
     [SerializeField] private GameObject platformPrefab;
     private float nextSpawnTime=0;
     //idk man
@@ -51,12 +51,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         //when we press A or D this value will +1 or -1,
         //if we press nothing the value is 0
-        if (Input.GetKeyDown(KeyCode.F)&&Time.time>nextSpawnTime)
+        if (Input.GetKeyDown(KeyCode.F)&&Time.time>nextSpawnTime&&usagetime>0)
         {
             createPlatform();
             transform.position = initialPlayerLocation;
             health = 100;
-            nextSpawnTime = Time.time+cooldownTime+spawnTime;
+            usagetime--;
+            nextSpawnTime = Time.time+cooldownTime;
         }
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);
 
@@ -124,6 +125,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         Vector2 spawnLocation = (Vector2)transform.position + new Vector2(0, -0.5f);
         GameObject tempPlatform = Instantiate(platformPrefab, spawnLocation, Quaternion.identity);
-        Destroy(tempPlatform, spawnTime);
+        //Destroy(tempPlatform, spawnTime);
     }
 }
