@@ -8,7 +8,17 @@ public class Key : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Destroy(door);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+
+
 }

@@ -80,7 +80,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             col.sharedMaterial.friction = 0.0f;
         }
 
-        if (transform.position.y < dieHeight)    
+        if (transform.position.y < dieHeight || Input.GetKeyDown(KeyCode.R))    
         {
             Die(); 
 
