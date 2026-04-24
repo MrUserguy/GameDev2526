@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     //adding a comment to fix stuff
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,6 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public float dieHeight = -10f;
     public LayerMask groundLayer;
+    public bool hasKey = false;
 
 
     private SpriteRenderer spriteRenderer;
