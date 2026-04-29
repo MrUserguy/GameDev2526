@@ -6,18 +6,11 @@ public class Key : MonoBehaviour
 
     private Transform followTarget;
     public bool pickedUp = false;
-
-    public Vector3 offset = new Vector3(0.5f, 0.5f, 0); // adjust position
-    public float followSpeed = 10f; // higher = snappier
-
-    void Update()
+    [SerializeField] public Sprite newsprite;
+    private SpriteRenderer spriteRenderer;
+    void Start()
     {
-        if (pickedUp && followTarget != null)
-        {
-            // Smooth follow (lerp)
-            Vector3 targetPos = followTarget.position + offset;
-            transform.position = Vector3.Lerp(transform.position, targetPos, followSpeed * Time.deltaTime);
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,23 +18,10 @@ public class Key : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();
+            spriteRenderer.sprite = newsprite;
+            Destroy(door);
+            
 
-            if (player != null)
-            {
-                player.hasKey = true; // give key to player
-            }
-
-            // Start following player
-            pickedUp = true;
-            followTarget = collision.transform;
-
-            // Disable physics
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-            if (rb != null)
-                rb.simulated = false;
-
-            // Disable collider so it doesn't interfere
-            GetComponent<Collider2D>().enabled = false;
         }
     }
 }
