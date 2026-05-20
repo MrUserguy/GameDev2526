@@ -14,8 +14,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Minimap
+  - Main Camera
   - 
   - 
   - 
@@ -42,6 +42,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: whatever?
+    uniqueID: 3536518391
+    locked: 0
+  - name: Minimap UI
+    uniqueID: 197383653
     locked: 0
   m_RenderingLayers:
   - Default
