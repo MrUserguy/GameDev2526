@@ -66,16 +66,19 @@ public class Player : MonoBehaviour
         {
             if (!isGrounded)
             {
-                hasDoubleJump = false;  
+                hasDoubleJump = false;
+                Debug.Log("Jumped");
             }
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingForce);
+            Debug.Log("Jumped");
         }
 
         if (isGrounded)
         {
             hasDoubleJump = true;
             col.sharedMaterial.friction = 1.0f;
-        }
+            Debug.Log("Jump reset");
+        } 
         else
         {
             col.sharedMaterial.friction = 0.0f;
